@@ -11,18 +11,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class H {
 
-	class  J {
+	static class J {
 
-		public J(H h){
-
-		}
 
 	}
 
 	public static void main(String[] args) {
 
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.register(H.class);
 		context.register(J.class);
 		context.refresh();
 		context.getBean(J.class);
