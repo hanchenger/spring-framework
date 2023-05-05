@@ -36,6 +36,7 @@ import org.slf4j.spi.LocationAwareLogger;
  */
 final class LogAdapter {
 
+	// log4j2 jar 当中的一个类
 	private static final String LOG4J_SPI = "org.apache.logging.log4j.spi.ExtendedLogger";
 
 	private static final String LOG4J_SLF4J_PROVIDER = "org.apache.logging.slf4j.SLF4JProvider";
@@ -85,12 +86,16 @@ final class LogAdapter {
 	 */
 	public static Log createLog(String name) {
 		switch (logApi) {
+			//log4j2
 			case LOG4J:
 				return Log4jAdapter.createLog(name);
+			//slf4j_full
 			case SLF4J_LAL:
 				return Slf4jAdapter.createLocationAwareLog(name);
+			//slf4j
 			case SLF4J:
 				return Slf4jAdapter.createLog(name);
+			//jul
 			default:
 				// Defensively use lazy-initializing adapter class here as well since the
 				// java.logging module is not present by default on JDK 9. We are requiring
