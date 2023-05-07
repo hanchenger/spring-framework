@@ -1,4 +1,4 @@
-package org.springframework;
+package org.springframework.example;
 
 import org.apache.ibatis.logging.LogFactory;
 

@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.example.config.ModelConfig;
+import org.springframework.example.defaults.ModelBeanFactoryPostProcessor;
 import org.springframework.example.statics.A;
 import org.springframework.example.statics.Config;
 import org.springframework.example.statics.ObjectFactory;
@@ -17,28 +19,28 @@ public class ModeTest {
 
 
 	@Test
-	public  void dependsOnModel()  {
+	public void dependsOnModel() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("org.springframework.example.dependsOn");
 		context.refresh();
 	}
 
 	@Test
-	public  void staticsModel()  {
+	public void staticsModel() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		//context.register(Config.class);
 
-        //beanDefinition称为bean的原料
+		//beanDefinition称为bean的原料
 		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
 		beanDefinition.setBeanClass(A.class);
 
-		context.registerBeanDefinition("a",beanDefinition);
+		context.registerBeanDefinition("a", beanDefinition);
 
 		context.refresh();
 	}
 
 	@Test
-	public  void staticsDefinitionModel2()  {
+	public void staticsDefinitionModel2() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(ObjectFactory.class);
 
@@ -48,13 +50,13 @@ public class ModeTest {
 		beanDefinition.setFactoryBeanName("objectFactory");
 		beanDefinition.setFactoryMethodName("instanceObject");
 
-		context.registerBeanDefinition("a",beanDefinition);
+		context.registerBeanDefinition("a", beanDefinition);
 
 		context.refresh();
 	}
 
 	@Test
-	public  void staticsDefinitionModel3()  {
+	public void staticsDefinitionModel3() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(ObjectFactory.class);
 
@@ -64,7 +66,7 @@ public class ModeTest {
 		SupplierFactory supplierFactory = new SupplierFactory();
 		beanDefinition.setInstanceSupplier(supplierFactory::instanceObject);
 
-		context.registerBeanDefinition("a",beanDefinition);
+		context.registerBeanDefinition("a", beanDefinition);
 		context.refresh();
 	}
 
@@ -99,4 +101,18 @@ public class ModeTest {
 		context.refresh();
 
 	}
+
+	/**
+	 * 测试注入模型对bean的影响
+	 * 包括实例化，或者一些高级特性
+	 */
+	@Test
+	public void defaultModel() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(ModelConfig.class);
+        context.register(ModelBeanFactoryPostProcessor.class);
+		context.refresh();
+
+	}
+
 }
