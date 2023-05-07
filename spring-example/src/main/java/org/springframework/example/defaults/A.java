@@ -17,7 +17,13 @@ public class A implements ExampleAware {
 		log.debug("Constructor from b ");
 	}
 
-    //改变A(B b)和A(C c)方法的顺序发现spring推断构造方法采用了到了 A(C c)
+	//spring推断构造方法会采用参数最多的构造方法
+	public A(B b,M m) {
+		log.debug("Constructor from b m");
+	}
+
+
+	//改变A(B b)和A(C c)方法的顺序发现spring推断构造方法采用了到了 A(C c)
 	//这里是按照加载构造方法的顺序的，但是它加载完了之后，就倒过来，并且通过算法会给A(C c)和A(B b)计算一个得分，最后推断构造方法的
 	public A(C c) {
 		log.debug("Constructor from c");
