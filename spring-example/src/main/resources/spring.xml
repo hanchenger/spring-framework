@@ -11,18 +11,18 @@
 
 
 	<!-- 实例工厂方法的例子  -->
-	<bean id="a" class="org.springframework.example.statics.A" factory-bean="objectFactory" factory-method="instanceObject">
+<!--	<bean id="a" class="org.springframework.example.statics.A" factory-bean="objectFactory" factory-method="instanceObject">-->
 
-	</bean>
-	<bean id="objectFactory" class="org.springframework.example.statics.ObjectFactory">
+<!--	</bean>-->
+<!--	<bean id="objectFactory" class="org.springframework.example.statics.ObjectFactory">-->
 
-	</bean>
+<!--	</bean>-->
 
 	<!-- 手动注入  -->
-	<bean id="m" class="org.springframework.example.defaults.M"  >
-         <property name="n">
-			 <ref bean="n"></ref>
-		 </property>
+	<bean id="m" class="org.springframework.example.defaults.M" autowire="byType" >
+<!--         <property name="n">-->
+<!--			 <ref bean="n"></ref>-->
+<!--		 </property>-->
     </bean>
 
 	<bean id="n" class="org.springframework.example.defaults.N" >
