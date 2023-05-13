@@ -115,4 +115,17 @@ public class ModeTest {
 
 	}
 
+	/**
+	 * spring中的所有bean默认情况下的注入模型都是0（也就是手动注入）
+	 * 手动注入就是说你的明确告诉spring这些依赖项的来源
+	 */
+	@Test
+	public void defaultModel1() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(ModelConfig.class);
+		context.register(ModelBeanFactoryPostProcessor.class);
+		context.refresh();
+
+	}
+
 }
