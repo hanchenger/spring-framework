@@ -637,6 +637,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				}
 			}
 			else {
+				//从这个类中加了autowired注解的字段上解析出这个字段的在spring容器中的类
 				value = resolveFieldValue(field, bean, beanName);
 			}
 			if (value != null) {

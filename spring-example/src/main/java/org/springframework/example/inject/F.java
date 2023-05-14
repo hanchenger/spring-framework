@@ -4,11 +4,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+import javax.annotation.Resource;
+
+@Component("f")
 @Slf4j
 public class F {
 
+	/**
+	 * autowired 先type 1  t
+	 *           先type >1 再名称 =1 true >1 f
+	 *           先type =0 看request如为true则报错
+	 *
+	 *
+	 *
+	 */
 	@Autowired
+	//@Resource
 	I a;
 
 	K k;
