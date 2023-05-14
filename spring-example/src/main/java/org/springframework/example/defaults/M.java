@@ -12,6 +12,7 @@ public class M {
 		log.debug("default constructor m");
 	}
 
+	@Autowired
 	public M(N n) {
 		log.debug("Constructor N:{}", n);
 	}
