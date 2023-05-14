@@ -7,6 +7,8 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.example.config.ModelConfig;
 import org.springframework.example.defaults.ModelBeanFactoryPostProcessor;
+import org.springframework.example.inject.F;
+import org.springframework.example.inject.I;
 import org.springframework.example.statics.A;
 import org.springframework.example.statics.Config;
 import org.springframework.example.statics.ObjectFactory;
@@ -14,7 +16,7 @@ import org.springframework.example.statics.SupplierFactory;
 
 import java.util.function.Supplier;
 
-@Slf4j
+@Slf4j(topic = "e")
 public class ModeTest {
 
 
@@ -125,6 +127,18 @@ public class ModeTest {
 		context.register(ModelConfig.class);
 		context.register(ModelBeanFactoryPostProcessor.class);
 		context.refresh();
+
+	}
+
+	@Test
+	public void autowiredModel() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.inject");
+		context.refresh();
+
+		//context.getBean(F.class).getK();
+		I i = context.getBean(F.class).getI();
+		log.debug("i==[{}]",i);
 
 	}
 
