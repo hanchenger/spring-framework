@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
-@Component("f")
+@Component
 @Slf4j
 public class F {
 
@@ -18,9 +18,15 @@ public class F {
 	 *
 	 *
 	 */
-	@Autowired
-	//@Resource
+	//Autowired
+	@Resource
 	I a;
+
+	@Resource(name = "cc")
+	G g;
+
+	@Autowired
+	L l;
 
 	K k;
 

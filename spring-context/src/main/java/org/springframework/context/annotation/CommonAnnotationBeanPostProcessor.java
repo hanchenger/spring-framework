@@ -313,6 +313,11 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 
 	@Override
 	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) {
+        // InjectionMetadata当中的 Collection<InjectedElement> injectedElements;
+		//包含了当前bean当中所有的注入器InjectedElement  --> ResourceInjectedElement(method) AutowiredFiledElement(field)
+		//注入器当中包含了一个非常重要的属性Member member
+		//findResourceMetadata 就是找出当前bean应当具备那些注入器
+
 		InjectionMetadata metadata = findResourceMetadata(beanName, bean.getClass(), pvs);
 		try {
 			metadata.inject(bean, beanName, pvs);
@@ -512,18 +517,23 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 
 		Object resource;
 		Set<String> autowiredBeanNames;
+		//name注入器的name
 		String name = element.name;
-
+        //@Resource查找bean的代码
 		if (factory instanceof AutowireCapableBeanFactory) {
 			AutowireCapableBeanFactory beanFactory = (AutowireCapableBeanFactory) factory;
 			DependencyDescriptor descriptor = element.getDependencyDescriptor();
+			//@Resource和@Autowired的区别,以及它的原理
+			//factory.containsBean(name),判断在spring容器中是否存在name为此名称的bean
 			if (this.fallbackToDefaultTypeMatch && element.isDefaultName && !factory.containsBean(name)) {
 				autowiredBeanNames = new LinkedHashSet<>();
+				//和@Autowired没有任何区别,那一套找bean的流程
 				resource = beanFactory.resolveDependency(descriptor, requestingBeanName, autowiredBeanNames, null);
 				if (resource == null) {
 					throw new NoSuchBeanDefinitionException(element.getLookupType(), "No resolvable resource object");
 				}
 			}
+			//通过名字从spring容器当中获取一个对象出来完成注入
 			else {
 				resource = beanFactory.resolveBeanByName(name, descriptor);
 				autowiredBeanNames = Collections.singleton(name);
@@ -620,6 +630,7 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 			Resource resource = ae.getAnnotation(Resource.class);
 			String resourceName = resource.name();
 			Class<?> resourceType = resource.type();
+			//是否为默认名字
 			this.isDefaultName = !StringUtils.hasLength(resourceName);
 			if (this.isDefaultName) {
 				resourceName = this.member.getName();
