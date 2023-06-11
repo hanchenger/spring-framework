@@ -9,11 +9,14 @@ import org.springframework.example.config.ModelConfig;
 import org.springframework.example.defaults.ModelBeanFactoryPostProcessor;
 import org.springframework.example.inject.F;
 import org.springframework.example.inject.I;
+import org.springframework.example.order.E;
+import org.springframework.example.order.T;
 import org.springframework.example.statics.A;
 import org.springframework.example.statics.Config;
 import org.springframework.example.statics.ObjectFactory;
 import org.springframework.example.statics.SupplierFactory;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 @Slf4j(topic = "e")
@@ -142,4 +145,18 @@ public class ModeTest {
 
 	}
 
+	/**
+	 * 测试@Order注解的功能
+	 *
+	 */
+	@Test
+	public void orderModel() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.order");
+		context.refresh();
+
+	//	List<E> beanFactoryPostProcessor = context.getBean(T.class).getBeanFactoryPostProcessor();
+
+
+	}
 }
