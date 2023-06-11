@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Slf4j(topic = "e")
+@Slf4j(topic = "e1")
 @Order(4)
 @Component("1")
 public class Z2 {

@@ -155,8 +155,10 @@ public class ModeTest {
 		context.scan("org.springframework.example.order");
 		context.refresh();
 
-	//	List<E> beanFactoryPostProcessor = context.getBean(T.class).getBeanFactoryPostProcessor();
-
+		List<E> beanFactoryPostProcessor = context.getBean(T.class).getBeanFactoryPostProcessor();
+        for(E e : beanFactoryPostProcessor){
+			e.orderList();
+		}
 
 	}
 }
