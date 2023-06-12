@@ -9,6 +9,8 @@ import org.springframework.example.config.ModelConfig;
 import org.springframework.example.defaults.ModelBeanFactoryPostProcessor;
 import org.springframework.example.inject.F;
 import org.springframework.example.inject.I;
+import org.springframework.example.lookup.LA;
+import org.springframework.example.lookup.LC;
 import org.springframework.example.order.E;
 import org.springframework.example.order.T;
 import org.springframework.example.statics.A;
@@ -160,5 +162,20 @@ public class ModeTest {
 			e.orderList();
 		}
 
+	}
+
+
+	/**
+	 * 测试@Lookup注解的功能
+	 */
+	@Test
+	public void lookupModel() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.lookup");
+		context.refresh();
+
+		//context.getBean(LA.class).printInfo();
+
+		context.getBean(LC.class).printInfo();
 	}
 }
