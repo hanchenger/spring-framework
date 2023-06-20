@@ -1,4 +1,4 @@
-package org.springframework.automode;
+package org.springframework.example.automode;
 
 
 import lombok.extern.slf4j.Slf4j;

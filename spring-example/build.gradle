@@ -15,10 +15,16 @@ dependencies {
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.10'
     compile(project(":spring-context"))
 
-    compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.9.1' //桥接器
+
+    // implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.9.1'
+
+    implementation 'org.projectlombok:lombok:1.18.20'
+
 //    compile("org.apache.logging.log4j:log4j-core")
 //    compile("org.apache.logging.log4j:log4j-api")
-    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+// https://mvnrepository.com/artifact/log4j/log4j
+//    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
 
     //连接池
     compile(project(":spring-jdbc"))

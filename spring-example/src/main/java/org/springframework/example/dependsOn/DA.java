@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+
 @Component("da")
 @Slf4j(topic = "e")
 @DependsOn("db")
