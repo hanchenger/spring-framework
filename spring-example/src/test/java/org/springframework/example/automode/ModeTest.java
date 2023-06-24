@@ -130,7 +130,7 @@ public class ModeTest {
 	public void defaultModel1() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(ModelConfig.class);
-		context.register(ModelBeanFactoryPostProcessor.class);
+		//context.register(ModelBeanFactoryPostProcessor.class);
 		context.refresh();
 
 	}

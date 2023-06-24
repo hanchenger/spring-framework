@@ -20,7 +20,7 @@ public class F {
 	 */
 	//Autowired
 	@Resource
-	I a;
+	I c;
 
 	@Resource(name = "cc")
 	G g;
@@ -35,7 +35,7 @@ public class F {
 	}
 
 	public I getI() {
-		return a;
+		return c;
 	}
 
 	public void setA(I a) {

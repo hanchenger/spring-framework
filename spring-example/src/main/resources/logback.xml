@@ -25,12 +25,12 @@
 	<!--		</encoder>-->
 	<!--	</appender>-->
 
-	<root level="debug">
+	<root level="info">
 		<appender-ref ref="console" />
 		<!--		<appender-ref ref="file" />-->
 	</root>
 
-	<logger name="e" level="debug" additivity="false">
+	<logger name="e" level="info" additivity="false">
 		<appender-ref ref="console"/>
 	</logger>
 
