@@ -1,6 +1,8 @@
 package org.springframework.example.batis.service;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.example.batis.dao.AMapper;
 import org.springframework.example.batis.dao.TMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,12 @@ public class TServiceImpl implements TService {
 	@Autowired
 	TMapper tMapper;
 
+	@Autowired
+	AMapper aMapper;
+
 	@Override
 	public List<Map<String, Object>> queryFroList() {
+		aMapper.queryFroList();
 		return tMapper.queryFroList();
 	}
 

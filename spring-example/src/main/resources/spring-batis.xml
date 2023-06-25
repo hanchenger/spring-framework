@@ -8,4 +8,8 @@
 		<property name="mapperInterface" value="org.springframework.example.batis.dao.TMapper"></property>
 	</bean>
 
+	<bean id="a" class="org.springframework.example.batis.util.MyFactoryBean" >
+		<property name="mapperInterface" value="org.springframework.example.batis.dao.AMapper"></property>
+	</bean>
+
 </beans>

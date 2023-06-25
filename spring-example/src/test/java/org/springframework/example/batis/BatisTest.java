@@ -117,4 +117,20 @@ public class BatisTest {
 		tService.queryFroList();
 
 	}
+
+	/**
+	 * 配置多少mapper的时候通过FactoryBean来配置，比较麻烦，
+	 * mybatis提供了
+	 * @MapperScan("org.mybatis.spring.sample.mapper")
+	 * 或者xml
+	 * <mybatis:scan base-package="org.mybatis.spring.sample.mapper" />
+	 *
+	 */
+	@Test
+	public void testMultiFactorBeanBatis() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BatisConfig.class);
+		TService tService = context.getBean(TService.class);
+		tService.queryFroList();
+
+	}
 }
