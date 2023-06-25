@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.example.batis.dao.TMapper;
 import org.springframework.example.batis.mybatis.MySqlSession;
 import org.springframework.example.order.E;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 
 @ComponentScan("org.springframework.example.batis")
 //@MapperScan("org.springframework.example.batis.dao")
+@ImportResource("classpath:spring-batis.xml")
 public class BatisConfig {
 
 

@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.example.batis.config.BatisConfig;
 import org.springframework.example.batis.dao.TMapper;
@@ -69,7 +70,7 @@ public class BatisTest {
 	 */
 	@Test
 	public void customBatis() {
-
+		MapperFactoryBean MapperFactoryBean = new MapperFactoryBean();
 		TMapper mapper = (TMapper) MySqlSession.getMapper(TMapper.class);
 		Map<String, Object> resultMap = mapper.queryFroMap(1);
 		log.debug("resultMap:{}", resultMap);
@@ -92,11 +93,28 @@ public class BatisTest {
 	@Test
 	public void customObjectBatis() {
 
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BatisConfig.class);
-		TService tService = context.getBean(TService.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(BatisConfig.class);
+		TMapper tMapper = (TMapper) MySqlSession.getMapper(TMapper.class);
+		context.getBeanFactory().registerSingleton("tMapper",tMapper);
 
+		context.refresh();
+		TService tService = context.getBean(TService.class);
 		tService.queryFroList();
 
+
+	}
+
+
+	/**
+	 * 1.MyFactoryBean自己必须生效，存在spring容器当中
+	 * 2.mapperInterface必须有值
+	 */
+	@Test
+	public void testFactorBeanBatis() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BatisConfig.class);
+		TService tService = context.getBean(TService.class);
+		tService.queryFroList();
 
 	}
 }
