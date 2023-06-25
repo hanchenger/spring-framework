@@ -79,7 +79,15 @@ public class BatisTest {
 	 * 测试
 	 * 把一个第三方的对象给spring
 	 *
-	 * 如何把第三方的bean交给spring来管理
+	 * 思考：如何把第三方的bean交给spring来管理的方式：
+	 *
+	 * 1.注解（@Service，@Repository，@Component等等）
+	 *    这种方式不行,原因
+	 * 2.xml配置<bean></bean>  不行
+	 * 3.注解（@Bean） 可以
+	 * 4.Factory 可以
+	 * 5.springAPi可以
+	 * 6.动态的向容器注册BeanDefinition 不行
 	 */
 	@Test
 	public void customObjectBatis() {
@@ -87,9 +95,8 @@ public class BatisTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BatisConfig.class);
 		TService tService = context.getBean(TService.class);
 
+		tService.queryFroList();
 
-		TMapper mapper = (TMapper) MySqlSession.getMapper(TMapper.class);
-		Map<String, Object> resultMap = mapper.queryFroMap(1);
-		log.debug("resultMap:{}", resultMap);
+
 	}
 }

@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.example.batis.dao.TMapper;
+import org.springframework.example.batis.mybatis.MySqlSession;
 import org.springframework.example.order.E;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -36,5 +38,14 @@ public class BatisConfig {
 //
 //	}
 
+	/**
+	 * @Bean的方式
+	 * 实现把第三方的对象交给spring来管理
+	 */
+//	@Bean
+//	public TMapper tMapper() throws Exception {
+//		return (TMapper) MySqlSession.getMapper(TMapper.class);
+//
+//	}
 
 }
