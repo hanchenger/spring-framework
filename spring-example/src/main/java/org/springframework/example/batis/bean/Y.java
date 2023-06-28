@@ -1,4 +1,4 @@
-package org.springframework.example.bean;
+package org.springframework.example.batis.bean;
 
 
 import lombok.extern.slf4j.Slf4j;
