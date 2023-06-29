@@ -19,7 +19,6 @@ public class TServiceImpl implements TService {
 	 */
 	@Autowired
 	TMapper tMapper;
-
 	@Autowired
 	AMapper aMapper;
 

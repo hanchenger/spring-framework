@@ -43,11 +43,13 @@ public class MySqlSession {
 			}
 
 			//
-			Select select = method.getAnnotation(Select.class);
-			String sql = select.value()[0];
-			log.debug("假装已经连接数据库了 conn db");
-			log.debug("假装执行查询 execute sql:{}",sql);
-			log.debug("假装根据类型返回了真实对象----");
+			if(method.isAnnotationPresent(Select.class)){
+				Select select = method.getAnnotation(Select.class);
+				String sql = select.value()[0];
+				log.debug("假装已经连接数据库了 conn db");
+				log.debug("假装执行查询 execute sql:{}",sql);
+				log.debug("假装根据类型返回了真实对象----");
+			}
 			return null;
 		}
 	}

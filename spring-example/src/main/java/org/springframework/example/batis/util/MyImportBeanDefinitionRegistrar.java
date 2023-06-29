@@ -16,6 +16,9 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
 		log.debug("registerBeanDefinitions execute ......");
 		BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(MyFactoryBean.class);
 		AbstractBeanDefinition beanDefinition = beanDefinitionBuilder.getBeanDefinition();
+
+		//设置手动注入的属性
+		beanDefinition.getPropertyValues().add("mapperInterface","org.springframework.example.batis.dao.AMapper");
 		registry.registerBeanDefinition("a",beanDefinition);
 	}
 }
