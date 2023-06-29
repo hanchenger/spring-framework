@@ -1,7 +1,10 @@
 package org.springframework.example.batis.mybatis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.example.batis.dao.AMapper;
+import org.springframework.example.batis.dao.TMapper;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,10 +22,11 @@ public class MySqlSession {
 	 * (ClassLoader loader,
 	 * Class<?>[] interfaces,
 	 * InvocationHandler h
+	 *
 	 * @param clazz
 	 * @return
 	 */
-	public static Object getMapper(Class clazz){
+	public static Object getMapper(Class clazz) {
 		ClassLoader classLoader = MySqlSession.class.getClassLoader();
 		Class[] classes = new Class[]{clazz};
 		//返回上面符合要求的对象  首先肯定是一个类
@@ -30,26 +34,24 @@ public class MySqlSession {
 		return proxy;
 	}
 
+
 	@Slf4j(topic = "e")
-	static  class MyTestInvocationHandler implements InvocationHandler {
+	static class MyTestInvocationHandler implements InvocationHandler {
 
 		//获取当前执行的方法对应的sql语句
 		//执行这些sql语句
 		@Override
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			//处理toString、hashcode等Object方法
-			if(method.getDeclaringClass().equals(Object.class)){
-				method.invoke(this,args);
+			if (method.getDeclaringClass().equals(Object.class)) {
+				method.invoke(this, args);
 			}
-
 			//
-			if(method.isAnnotationPresent(Select.class)){
-				Select select = method.getAnnotation(Select.class);
-				String sql = select.value()[0];
-				log.debug("假装已经连接数据库了 conn db");
-				log.debug("假装执行查询 execute sql:{}",sql);
-				log.debug("假装根据类型返回了真实对象----");
-			}
+			Select select = method.getAnnotation(Select.class);
+			String sql = select.value()[0];
+			log.debug("假装已经连接数据库了 conn db");
+			log.debug("假装执行查询 execute sql:{}", sql);
+			log.debug("假装根据类型返回了真实对象----");
 			return null;
 		}
 	}

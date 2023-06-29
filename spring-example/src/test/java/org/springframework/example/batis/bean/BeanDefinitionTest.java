@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.example.batis.config.BatisConfig;
 import org.springframework.example.batis.dao.AMapper;
 import org.springframework.example.batis.dao.TMapper;
+import org.springframework.example.batis.service.TService;
 
 import java.util.Optional;
 
@@ -25,12 +26,8 @@ public class BeanDefinitionTest {
 	@Test
 	public void testRegisterBeanDefinitions() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BatisConfig.class);
-		TMapper t = (TMapper) context.getBean("t");
-        log.debug("t:{}",t.queryFroList());
-
-
-		AMapper a = (AMapper) context.getBean("a");
-		log.debug("a:{}",a.queryFroList());
+		TService tService = (TService) context.getBean("TServiceImpl");
+		tService.queryFroList();
 
 	}
 }

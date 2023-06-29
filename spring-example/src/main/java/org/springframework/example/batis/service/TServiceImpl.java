@@ -12,11 +12,8 @@ import java.util.Map;
 @Service
 public class TServiceImpl implements TService {
 
-	/**
-	 * 疑问：
-	 * 1.tMapper的实现类对象是如何产生的
-	 * 2.tMapper对象是谁产生的
-	 */
+	//1、对象？
+	//2、tMapper如何产生的？谁产生的
 	@Autowired
 	TMapper tMapper;
 	@Autowired
