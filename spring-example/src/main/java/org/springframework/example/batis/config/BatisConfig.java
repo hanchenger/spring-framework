@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.example.batis.dao.TMapper;
 import org.springframework.example.batis.mybatis.MySqlSession;
 import org.springframework.example.batis.util.MyImportBeanDefinitionRegistrar;
+import org.springframework.example.batis.util.MyMapperScan;
 import org.springframework.example.order.E;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -19,7 +20,8 @@ import javax.sql.DataSource;
 @ComponentScan("org.springframework.example.batis")
 //@MapperScan("org.springframework.example.batis.dao")
 @ImportResource("classpath:spring-batis.xml")
-@Import(MyImportBeanDefinitionRegistrar.class)
+//@Import(MyImportBeanDefinitionRegistrar.class)
+@MyMapperScan()
 public class BatisConfig {
 
 
