@@ -19,7 +19,7 @@ public class A implements InitializingBean {
 
 
 	@Autowired
-	ApplicationContext context;
+	//ApplicationContext context;
 
 
 	public A(){
@@ -29,7 +29,7 @@ public class A implements InitializingBean {
 	@PostConstruct
 	public void init(){
 		log.debug("a init PostConstruct");
-		context.publishEvent(new ABeanInitEvent(context));
+		//context.publishEvent(new ABeanInitEvent(context));
 	}
 
 

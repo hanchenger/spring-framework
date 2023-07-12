@@ -5,8 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Configuration
-@ComponentScan("org.springframework.example.context")
+@ComponentScan("org.springframework.example.context.bfpp")
 public class ContextConfig {
 
 

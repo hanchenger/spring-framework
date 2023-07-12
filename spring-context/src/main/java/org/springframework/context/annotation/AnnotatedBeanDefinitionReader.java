@@ -39,6 +39,8 @@ import org.springframework.util.Assert;
  * <p>This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
  * the same resolution of annotations but for explicitly registered classes only.
  *
+ * <p>beanDefinition渲染器,能把给定的class类创建出beanDefinition对象并放入beanDefinitionMap中
+ *
  * @author Juergen Hoeller
  * @author Chris Beams
  * @author Sam Brannen
@@ -85,6 +87,7 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+		//注册了spring内置的beanDefinition
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 

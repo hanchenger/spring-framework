@@ -627,6 +627,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void initPropertySources() {
 		// For subclasses: do nothing by default.
+		// 如果想扩展容器可以在这里添加实现
+		//自己写的测试方法
+		//getEnvironment().setRequiredProperties("xxx");
 	}
 
 	/**

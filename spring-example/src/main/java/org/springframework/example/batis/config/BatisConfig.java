@@ -18,7 +18,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @ComponentScan("org.springframework.example.batis")
-//@MapperScan("org.springframework.example.batis.dao")
+@MapperScan("org.springframework.example.batis.dao")
 @ImportResource("classpath:spring-batis.xml")
 //@Import(MyImportBeanDefinitionRegistrar.class)
 @MyMapperScan()
