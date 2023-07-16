@@ -2,7 +2,9 @@ package org.springframework.example.context.bfpp;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
@@ -26,5 +28,8 @@ public class D implements BeanDefinitionRegistryPostProcessor {
 
 		BeanDefinitionBuilder f = BeanDefinitionBuilder.genericBeanDefinition(F.class);
 		registry.registerBeanDefinition("f", f.getBeanDefinition());
+
+
+
 	}
 }
