@@ -21,8 +21,8 @@ public class A implements BeanFactoryPostProcessor {
 //		BeanDefinitionBuilder k = BeanDefinitionBuilder.genericBeanDefinition(K.class);
 //		defaultListableBeanFactory.registerBeanDefinition("k",k.getBeanDefinition());
 
-		BeanDefinitionBuilder x = BeanDefinitionBuilder.genericBeanDefinition(X.class);
-		defaultListableBeanFactory.registerBeanDefinition("x",x.getBeanDefinition());
+//		BeanDefinitionBuilder x = BeanDefinitionBuilder.genericBeanDefinition(X.class);
+//		defaultListableBeanFactory.registerBeanDefinition("x",x.getBeanDefinition());
 
 		log.debug("a-p scan parent postProcessBeanFactory");
 	}

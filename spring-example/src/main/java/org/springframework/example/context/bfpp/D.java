@@ -29,7 +29,8 @@ public class D implements BeanDefinitionRegistryPostProcessor {
 		BeanDefinitionBuilder f = BeanDefinitionBuilder.genericBeanDefinition(F.class);
 		registry.registerBeanDefinition("f", f.getBeanDefinition());
 
-
+//		BeanDefinitionBuilder x = BeanDefinitionBuilder.genericBeanDefinition(X.class);
+//		registry.registerBeanDefinition("x",x.getBeanDefinition());
 
 	}
 }
