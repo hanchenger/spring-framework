@@ -2,15 +2,16 @@ package org.springframework.example.context;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.example.batis.bean.F;
 import org.springframework.example.context.bean.A;
 import org.springframework.example.context.bean.C;
 import org.springframework.example.context.bfpp.BBeanFactoryPostProcessor;
 import org.springframework.example.context.config.ContextConfig;
-import org.springframework.util.ObjectUtils;
+
+
 
 public class ContextTest {
 
@@ -64,5 +65,13 @@ public class ContextTest {
 		//相当于手动扫描
 		context.register(ContextConfig.class);
 		context.refresh();
+	}
+
+	@Test
+	public void ignoreContextTest(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.batis.bean");
+		context.refresh();
+		System.out.println(context.getBean(F.class).getK());
 	}
 }

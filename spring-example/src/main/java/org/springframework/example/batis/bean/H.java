@@ -1,0 +1,8 @@
+package org.springframework.example.batis.bean;
+
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class H implements K{
+}

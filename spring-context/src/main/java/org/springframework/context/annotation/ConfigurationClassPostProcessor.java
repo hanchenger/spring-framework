@@ -103,7 +103,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			ConfigurationClassPostProcessor.class.getName() + ".importRegistry";
 
 
-	private final Log logger = LogFactory.getLog("t");
+	private final Log logger = LogFactory.getLog(getClass());
 
 	private SourceExtractor sourceExtractor = new PassThroughSourceExtractor();
 

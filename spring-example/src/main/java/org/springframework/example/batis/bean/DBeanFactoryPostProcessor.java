@@ -11,8 +11,17 @@ import org.springframework.stereotype.Component;
 public class DBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		AbstractBeanDefinition xbeanDefinition = (AbstractBeanDefinition) beanFactory.getBeanDefinition("x");
-		xbeanDefinition.setBeanClass(D.class);
+//		AbstractBeanDefinition xbeanDefinition = (AbstractBeanDefinition) beanFactory.getBeanDefinition("x");
+//		xbeanDefinition.setBeanClass(D.class);
 
+				AbstractBeanDefinition e = (AbstractBeanDefinition) beanFactory.getBeanDefinition("e");
+		e.setAutowireMode(2);
+
+				AbstractBeanDefinition f = (AbstractBeanDefinition) beanFactory.getBeanDefinition("f");
+		f.setAutowireMode(2);
+
+		//beanFactory.ignoreDependencyType(K.class);
+
+		beanFactory.ignoreDependencyInterface(IAware.class);
 	}
 }
