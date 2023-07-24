@@ -131,7 +131,7 @@ import org.springframework.util.StringUtils;
 public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter
 		implements MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
 
-	protected final Log logger = LogFactory.getLog(getClass());
+	protected final Log logger = LogFactory.getLog("e");
 
 	private final Set<Class<? extends Annotation>> autowiredAnnotationTypes = new LinkedHashSet<>(4);
 
@@ -650,6 +650,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			if (value != null) {
 				ReflectionUtils.makeAccessible(field);
 				field.set(bean, value);
+				if (field.getName().equals("field")) {
+					logger.debug("@Autowired:[" + field.getName() + "]");
+				}
 			}
 		}
 
