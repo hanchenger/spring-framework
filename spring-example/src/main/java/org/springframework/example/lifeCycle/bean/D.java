@@ -6,12 +6,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j(topic = "e")
-public class D {
+public class D implements  F{
 
 	@Autowired
 	private E e;
 
 	public E getE() {
 		return e;
+	}
+
+	public void m0(){
+		log.debug("dmo");
 	}
 }

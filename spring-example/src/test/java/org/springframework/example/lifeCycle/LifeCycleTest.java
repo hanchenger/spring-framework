@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.example.lifeCycle.bean.D;
 import org.springframework.example.lifeCycle.bean.E;
+import org.springframework.example.lifeCycle.bean.F;
 import org.springframework.example.lifeCycle.config.LifeCycleConfig;
 
 
@@ -17,4 +18,11 @@ public class LifeCycleTest {
 		E e = context.getBean(D.class).getE();
 		log.debug("e:[{}]",e);
 	}
+	@Test
+	public void defaultCycleAopTest(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
+	    context.getBean(F.class).m0();
+		context.getBean(E.class).m0();
+	}
+
 }
