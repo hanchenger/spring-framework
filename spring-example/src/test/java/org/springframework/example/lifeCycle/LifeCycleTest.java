@@ -25,4 +25,12 @@ public class LifeCycleTest {
 		context.getBean(E.class).m0();
 	}
 
+	@Test
+	public void defaultCycleCircleReferenceTest(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(LifeCycleConfig.class);
+		//context.setAllowCircularReferences(false);
+		context.refresh();
+
+	}
 }

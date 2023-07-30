@@ -3,7 +3,6 @@ package org.springframework.example.lifeCycle.util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -11,7 +10,6 @@ import java.lang.reflect.Proxy;
 
 
 @Slf4j(topic = "e")
-@Component
 public class JDKProxyBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
 
 
