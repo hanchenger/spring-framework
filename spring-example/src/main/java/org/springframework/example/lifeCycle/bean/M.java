@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j(topic = "c")
+@Slf4j(topic = "e")
 public class M {
 
 	@Autowired

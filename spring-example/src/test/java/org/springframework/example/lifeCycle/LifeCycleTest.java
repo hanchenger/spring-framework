@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.example.lifeCycle.bean.D;
 import org.springframework.example.lifeCycle.bean.E;
 import org.springframework.example.lifeCycle.bean.F;
+import org.springframework.example.lifeCycle.bean.M;
 import org.springframework.example.lifeCycle.config.LifeCycleConfig;
 
 
@@ -31,6 +32,8 @@ public class LifeCycleTest {
 		context.register(LifeCycleConfig.class);
 		//context.setAllowCircularReferences(false);
 		context.refresh();
+		M bean = context.getBean(M.class);
+		bean.printf();
 
 	}
 }

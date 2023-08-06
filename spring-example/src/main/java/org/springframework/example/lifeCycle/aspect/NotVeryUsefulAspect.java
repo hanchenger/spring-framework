@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j(topic = "e")
 public class NotVeryUsefulAspect {
-	@Pointcut("within(org.springframework.example.lifeCycle.bean.A)")
+	@Pointcut("within(org.springframework.example.lifeCycle.bean.M)")
 	private void pointcut() {}
 
 	@Before("pointcut()")
