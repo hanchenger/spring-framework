@@ -21,7 +21,6 @@ public class TServiceImpl implements TService {
 
 	@Override
 	public List<Map<String, Object>> queryFroList() {
-		aMapper.queryFroList();
 		return tMapper.queryFroList();
 	}
 

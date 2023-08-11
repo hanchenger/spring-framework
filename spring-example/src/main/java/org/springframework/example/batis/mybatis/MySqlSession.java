@@ -9,6 +9,7 @@ import org.springframework.example.batis.dao.TMapper;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Objects;
 
 public class MySqlSession {
 
@@ -48,7 +49,10 @@ public class MySqlSession {
 			}
 			//
 			Select select = method.getAnnotation(Select.class);
-			String sql = select.value()[0];
+			String sql = null;
+			if (Objects.nonNull(select)) {
+				sql = select.value()[0];
+			}
 			log.debug("假装已经连接数据库了 conn db");
 			log.debug("假装执行查询 execute sql:{}", sql);
 			log.debug("假装根据类型返回了真实对象----");
