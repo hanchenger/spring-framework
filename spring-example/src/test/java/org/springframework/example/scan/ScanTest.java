@@ -27,5 +27,16 @@ public class ScanTest {
 
 	}
 
+	/**
+	 * 测试两个扫描器
+	 */
+	@Test
+	public void defaultTowScannerTest(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.scan.bean");
+		context.refresh();
+
+	}
+
 
 }
