@@ -1,6 +1,7 @@
 package org.springframework.example.batis.config;
 
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -18,7 +19,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @ComponentScan("org.springframework.example.batis")
-@MapperScan("org.springframework.example.batis.dao")
+@MapperScan(value = "org.springframework.example.batis.dao",markerInterface = TMapper.class)
 @ImportResource("classpath:spring-batis.xml")
 //@Import(MyImportBeanDefinitionRegistrar.class)
 //@MyMapperScan()

@@ -270,7 +270,6 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
 		String[] candidateNames = registry.getBeanDefinitionNames();
-
 		//获取内置的和我们提供的配置类
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
@@ -280,8 +279,9 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 					logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
 				}
 			}
-			// 全配置和半配置是程序员自己理解之后的一个概念，官方是说的full和little
+			//全配置和半配置是程序员自己理解之后的一个概念，官方是说的full和little
 			//全配置类和半配置类，一般来说加了@Configration注解就是全配置类，不加就是半配置类
+			//标记这个类，如果这个类是全配置类就做下全配置类的标记，如果这个类是半配置类就做下半配置类的标记
 			else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {
 				configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));
 			}
