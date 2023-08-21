@@ -4,24 +4,23 @@ package org.springframework.example.scan.bean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Component
 @Slf4j(topic = "e")
-//@ComponentScan("org.springframework.example.scan.other")
-public class A {
+//@Scope("prototype")
+@ComponentScan("org.springframework.example.scan.other")
+public class Y {
 
 
 	@PostConstruct
 	public void init(){
-		log.debug("a init");
+		log.debug("y init");
 	}
 
-//	@Bean
-//	public Z z(){
-//		return  new Z();
-//	}
+	@Bean
+	public Z z(){
+		return  new Z();
+	}
 }
