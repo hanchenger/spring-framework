@@ -81,9 +81,21 @@ class ComponentScanAnnotationParser {
 	 */
 	public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, String declaringClass) {
 		// scanner2
+		// useDefaultFilters 是否使用默认的过滤器
+		// filters 两种过滤器
+		// 1.include 引入
+		// 2.exclude 排除
+		// scanner.doScan
+		// 1.把所有的类（文件）都获取到
+		// 2.获取到的这些类，能不能变成beanDefinition(是不是符合规则)
+		// 需要进行过滤，include过滤到就表示合格
+		/**
+		 * 过滤逻辑 是否符合某个注解
+		 * 假设你扫描出来的能够被
+		 */
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,
 				componentScan.getBoolean("useDefaultFilters"), this.environment, this.resourceLoader);
-
+        // 判断是否有配置名字策略器
 		Class<? extends BeanNameGenerator> generatorClass = componentScan.getClass("nameGenerator");
 		boolean useInheritedGenerator = (BeanNameGenerator.class == generatorClass);
 		scanner.setBeanNameGenerator(useInheritedGenerator ? this.beanNameGenerator :
@@ -131,6 +143,7 @@ class ComponentScanAnnotationParser {
 			basePackages.add(ClassUtils.getPackageName(declaringClass));
 		}
 
+		//自己是不需要扫描的直接排除
 		scanner.addExcludeFilter(new AbstractTypeHierarchyTraversingFilter(false, false) {
 			@Override
 			protected boolean matchClassName(String className) {

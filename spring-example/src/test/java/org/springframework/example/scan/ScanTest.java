@@ -12,13 +12,16 @@ import org.springframework.example.scan.util.ScanBeanDefinitionRegistryPostProce
 public class ScanTest {
 
 
+	/**
+	 * spring完成扫描的代码在哪里
+	 */
 	@Test
 	public void defaultScanTest(){
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ScanConfig.class);
 	}
 
 	/**
-	 * 模拟扫描
+	 * 模拟spring的扫描
 	 */
 	@Test
 	public void defaultImitateScanTest(){
@@ -29,6 +32,7 @@ public class ScanTest {
 	}
 
 	/**
+	 * 理解spring当中有两个扫描器
 	 * 测试两个扫描器
 	 */
 	@Test

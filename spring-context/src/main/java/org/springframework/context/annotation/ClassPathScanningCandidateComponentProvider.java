@@ -207,6 +207,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		this.includeFilters.add(new AnnotationTypeFilter(Component.class));
 		ClassLoader cl = ClassPathScanningCandidateComponentProvider.class.getClassLoader();
 		try {
+			//之所以这么写(Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)是因为
+			//spring没有以来jsr的包，做成可插拔的形式，如果你的工程不想导入spring的依赖，但是想让spring管理的你的工程，你就可以引入
+			//jsr依赖，这样spring依然可以扫描到，并且是轻量级的
+			//如果要写成ManagedBean.class的形式就比如引入jar依赖否则编译不过
 			this.includeFilters.add(new AnnotationTypeFilter(
 					((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false));
 			logger.trace("JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning");
