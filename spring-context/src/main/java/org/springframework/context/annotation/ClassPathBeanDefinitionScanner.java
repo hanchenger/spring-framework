@@ -254,6 +254,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	public int scan(String... basePackages) {
 		int beanCountAtScanStart = this.registry.getBeanDefinitionCount();
 
+		//Mybatis的扫描器claspathMapperScanner重写了这个doScan方法
 		doScan(basePackages);
 
 		// Register annotation config processors, if necessary.

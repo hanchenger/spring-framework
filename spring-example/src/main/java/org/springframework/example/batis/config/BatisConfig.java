@@ -5,10 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.*;
 import org.springframework.example.batis.dao.TMapper;
 import org.springframework.example.batis.mybatis.MySqlSession;
 import org.springframework.example.batis.util.MyImportBeanDefinitionRegistrar;
@@ -19,10 +16,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @ComponentScan("org.springframework.example.batis")
-@MapperScan(value = "org.springframework.example.batis.dao",markerInterface = TMapper.class)
+//@MapperScan(value = "org.springframework.example.batis.dao")
 @ImportResource("classpath:spring-batis.xml")
 //@Import(MyImportBeanDefinitionRegistrar.class)
-//@MyMapperScan()
+@MyMapperScan()
 public class BatisConfig {
 
 
@@ -55,5 +52,12 @@ public class BatisConfig {
 //		return (TMapper) MySqlSession.getMapper(TMapper.class);
 //
 //	}
+
+	@Configuration
+	@Import(Bean1.class)
+	public static class AutoConfig {
+
+
+	}
 
 }

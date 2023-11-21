@@ -45,7 +45,7 @@ public class MySqlSession {
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			//处理toString、hashcode等Object方法
 			if (method.getDeclaringClass().equals(Object.class)) {
-				method.invoke(this, args);
+				return method.invoke(this, args);
 			}
 			//
 			Select select = method.getAnnotation(Select.class);

@@ -165,7 +165,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * Add an include type filter to the <i>end</i> of the inclusion list.
 	 */
-	public void addIncludeFilter(TypeFilter includeFilter) {
+	public void  addIncludeFilter(TypeFilter includeFilter) {
 		this.includeFilters.add(includeFilter);
 	}
 
