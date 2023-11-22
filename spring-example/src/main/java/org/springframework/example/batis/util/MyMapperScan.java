@@ -9,4 +9,5 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Import(MyImportBeanDefinitionRegistrar.class)
 public @interface MyMapperScan {
+	String value() default "";
 }

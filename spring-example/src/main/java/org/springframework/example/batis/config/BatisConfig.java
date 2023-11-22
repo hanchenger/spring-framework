@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 //@MapperScan(value = "org.springframework.example.batis.dao")
 @ImportResource("classpath:spring-batis.xml")
 //@Import(MyImportBeanDefinitionRegistrar.class)
-@MyMapperScan()
+@MyMapperScan("org.springframework.example.batis.dao")
 public class BatisConfig {
 
 

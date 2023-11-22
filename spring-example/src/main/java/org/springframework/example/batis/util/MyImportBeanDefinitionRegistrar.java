@@ -25,7 +25,8 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 		log.debug("registerBeanDefinitions execute ......");
-		scan(registry);
+		Map<String, Object> annotationAttributes = importingClassMetadata.getAnnotationAttributes(MyMapperScan.class.getName());
+		scan(registry,annotationAttributes);
 		for (BeanDefinitionHolder beanDefinitionHolder : beanDefinitionHolders) {
 			AbstractBeanDefinition bd = (AbstractBeanDefinition) beanDefinitionHolder.getBeanDefinition();
 			String beanClassName = bd.getBeanClassName();
@@ -35,10 +36,11 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
 
 	}
 
-	public void scan(BeanDefinitionRegistry registry) {
+	public void scan(BeanDefinitionRegistry registry,Map<String, Object> annotationAttributes ) {
+		String scanMapperStr = (String) annotationAttributes.get("value");
 		MyMapperScanner myMapperScanner = new MyMapperScanner(registry, false);
 		myMapperScanner.registerFilters();
-		beanDefinitionHolders = myMapperScanner.doScan("org.springframework.example.batis.dao");
+		beanDefinitionHolders = myMapperScanner.doScan(scanMapperStr);
 
 	}
 }
