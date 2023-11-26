@@ -10,6 +10,7 @@ import org.springframework.example.scan.inherited.S;
 import org.springframework.example.scan.inherited.SImpl;
 import org.springframework.example.scan.inherited.Sinherited;
 import org.springframework.example.scan.util.MyBeanNameGenerator;
+import org.springframework.example.scan.util.MySpringInterfaceScaner;
 import org.springframework.example.scan.util.ScanBeanDefinitionRegistryPostProcessor;
 
 import java.lang.annotation.Annotation;
@@ -112,5 +113,16 @@ public class ScanTest {
 
 	}
 
+
+	/**
+	 * 自定义spring扫描器-扫描特定接口
+	 */
+	@Test
+	public void interfaceScanTest(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		MySpringInterfaceScaner myScanner = new MySpringInterfaceScaner(context);
+		myScanner.scan("org.springframework.example.scan.bean");
+		context.refresh();
+	}
 
 }

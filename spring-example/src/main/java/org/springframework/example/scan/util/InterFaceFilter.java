@@ -17,7 +17,7 @@ public class InterFaceFilter extends AbstractTypeHierarchyTraversingFilter imple
 
 //	@Override
 //	protected Boolean matchInterface(String interfaceName) {
-//		if (interfaceName.equals("com.test.scan.bean.D")){
+//		if (interfaceName.equals("org.springframework.example.scan.bean.D")){
 //			return true;
 //		}
 //		return null;
