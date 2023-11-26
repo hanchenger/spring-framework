@@ -48,8 +48,8 @@ public class ScanTest {
 	@Test
 	public void defaultScanner1BeanNameGenerateTest(){
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(ScanConfig.class);
 		context.setBeanNameGenerator(new MyBeanNameGenerator());
-		context.scan("org.springframework.example.scan.bean");
 		context.refresh();
 
 		for (String beanDefinitionName : context.getBeanDefinitionNames()) {
