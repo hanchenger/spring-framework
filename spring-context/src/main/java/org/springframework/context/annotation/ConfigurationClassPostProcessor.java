@@ -259,6 +259,10 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			processConfigBeanDefinitions((BeanDefinitionRegistry) beanFactory);
 		}
 
+		//如果你是一个全配置类则去增强这个全配置类
+		//如果你是一个半配置类，则不增强
+		//所谓的增强 --- 就是代理
+		//如果你是一个全配置类则生成一个代理类
 		enhanceConfigurationClasses(beanFactory);
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
 	}
@@ -266,6 +270,10 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	/**
 	 * Build and validate a configuration model based on the registry of
 	 * {@link Configuration} classes.
+	 * 处理配置类
+	 * 1.扫描原理
+	 * 2.解析全配置或者半配置
+	 *
 	 */
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
@@ -388,8 +396,12 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 */
 	public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFactory) {
 		Map<String, AbstractBeanDefinition> configBeanDefs = new LinkedHashMap<>();
+		//beanFactory.getBeanDefinitionNames() 不止6个 因为这个时候已经完成了扫描
+		//还会获取出来你扫描出来的那些bean
 		for (String beanName : beanFactory.getBeanDefinitionNames()) {
 			BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
+			//在解析配置类是否全配置类的时候，如果一个配置类是全配置类--就被标识了value为full
+			//beanDef.getAttribute == map.get()如果不等于null 表示这个配置类已经被解析了(解析了是否全配置类)
 			Object configClassAttr = beanDef.getAttribute(ConfigurationClassUtils.CONFIGURATION_CLASS_ATTRIBUTE);
 			AnnotationMetadata annotationMetadata = null;
 			MethodMetadata methodMetadata = null;

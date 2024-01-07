@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,10 +35,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.support.SimpleInstantiationStrategy;
-import org.springframework.cglib.core.ClassGenerator;
-import org.springframework.cglib.core.ClassLoaderAwareGeneratorStrategy;
-import org.springframework.cglib.core.Constants;
-import org.springframework.cglib.core.SpringNamingPolicy;
+import org.springframework.cglib.core.*;
 import org.springframework.cglib.proxy.Callback;
 import org.springframework.cglib.proxy.CallbackFilter;
 import org.springframework.cglib.proxy.Enhancer;
@@ -118,6 +116,13 @@ class ConfigurationClassEnhancer {
 	 * Creates a new CGLIB {@link Enhancer} instance.
 	 */
 	private Enhancer newEnhancer(Class<?> configSuperClass, @Nullable ClassLoader classLoader) {
+		try{
+			saveGeneratedCGlibProxyFiles("D:\\");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(configSuperClass);
 		enhancer.setInterfaces(new Class<?>[] {EnhancedConfiguration.class});
@@ -127,6 +132,14 @@ class ConfigurationClassEnhancer {
 		enhancer.setCallbackFilter(CALLBACK_FILTER);
 		enhancer.setCallbackTypes(CALLBACK_FILTER.getCallbackTypes());
 		return enhancer;
+	}
+
+	public static void saveGeneratedCGlibProxyFiles(String dir) throws Exception {
+		Field field = System.class.getDeclaredField("props");
+		field.setAccessible(true);
+		Properties props = (Properties) field.get(null);
+		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY,dir);
+		props.put("net.sf.cglib.core.DebuggingClassWriter.traceEnabled","true");
 	}
 
 	/**
