@@ -5,6 +5,7 @@ import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.core.SpringNamingPolicy;
 import org.springframework.cglib.proxy.*;
 import org.springframework.example.enhancer.bean.A;
+import org.springframework.example.enhancer.bean.Z;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -30,7 +31,7 @@ public class SpringEnhancerUtil {
 		enhancer.setUseFactory(false);
 		enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
 		//enhancer.setStrategy(new ConfigurationClassEnhancer.BeanFactoryAwareGeneratorStrategy(this.getClass().getClassLoader()));
-		enhancer.setCallbacks(new Callback[]{new MyCallBack(),new MyCallBack1()});
+		enhancer.setCallbacks(new Callback[]{new ZPCallBack(),new ZSCallBack()});
 		//区别  setCallback会默认为所有方法增强
 		//setCallbackFilter 会过滤一些方法，只有符合过滤条件的才会增强
 		//setCallbackFilter spring当中主要过滤@Bean方法和setBeanFactory的方法
@@ -54,9 +55,9 @@ public class SpringEnhancerUtil {
 
 	public static void main(String[] args) {
 		SpringEnhancerUtil springEnhancerUtil = new SpringEnhancerUtil();
-		A a = (A) springEnhancerUtil.createProxyClazz(A.class);
-		a.m0();
-		a.m1();
+		Z z = (Z) springEnhancerUtil.createProxyClazz(Z.class);
+		z.m0();
+		z.m1();
 
 
 	}
