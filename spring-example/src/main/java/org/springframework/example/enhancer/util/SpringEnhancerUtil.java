@@ -30,23 +30,23 @@ public class SpringEnhancerUtil {
 		enhancer.setUseFactory(false);
 		enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
 		//enhancer.setStrategy(new ConfigurationClassEnhancer.BeanFactoryAwareGeneratorStrategy(this.getClass().getClassLoader()));
-		enhancer.setCallback(new MyCallBack());
+		enhancer.setCallbacks(new Callback[]{new MyCallBack(),new MyCallBack1()});
 		//区别  setCallback会默认为所有方法增强
 		//setCallbackFilter 会过滤一些方法，只有符合过滤条件的才会增强
 		//setCallbackFilter spring当中主要过滤@Bean方法和setBeanFactory的方法
-//		enhancer.setCallbackFilter(new CallbackFilter() {
-//			//不是过滤某个类 过滤某个方法
-//			@Override
-//			public int accept(Method method) {
-//				if (method.getName().equals("m0")){
-//					return 0;
-//				}if(method.getName().equals("m1")){
-//					return 1;
-//				}else {
-//					return 0;
-//				}
-//			}
-//		});
+		enhancer.setCallbackFilter(new CallbackFilter() {
+			//不是过滤某个类 过滤某个方法
+			@Override
+			public int accept(Method method) {
+				if (method.getName().equals("m0")){
+					return 0;
+				}if(method.getName().equals("m1")){
+					return 1;
+				}else {
+					return 0;
+				}
+			}
+		});
 		//enhancer.setCallbackTypes(CALLBACK_FILTER.getCallbackTypes());
 		Object o = enhancer.create();
 		return o;

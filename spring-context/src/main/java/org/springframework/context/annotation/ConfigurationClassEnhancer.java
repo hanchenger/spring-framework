@@ -125,10 +125,14 @@ class ConfigurationClassEnhancer {
 
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(configSuperClass);
+		//判断它是否已经被代理了
 		enhancer.setInterfaces(new Class<?>[] {EnhancedConfiguration.class});
 		enhancer.setUseFactory(false);
 		enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
 		enhancer.setStrategy(new BeanFactoryAwareGeneratorStrategy(classLoader));
+		//setCallback会默认为所有方法增强
+		//setCallbackFilter会过滤一些方法，只有符合过滤条件的才会增强
+		//setCallbackFilter主要过滤@Bean方法和setBeanFactory方法
 		enhancer.setCallbackFilter(CALLBACK_FILTER);
 		enhancer.setCallbackTypes(CALLBACK_FILTER.getCallbackTypes());
 		return enhancer;
