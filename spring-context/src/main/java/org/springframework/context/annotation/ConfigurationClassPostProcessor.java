@@ -476,6 +476,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			this.beanFactory = beanFactory;
 		}
 
+		//主要是完成加了@Configuration注解的配置类被代理的时候，注入一个beanFactory
 		@Override
 		public PropertyValues postProcessProperties(@Nullable PropertyValues pvs, Object bean, String beanName) {
 			// Inject the BeanFactory before AutowiredAnnotationBeanPostProcessor's

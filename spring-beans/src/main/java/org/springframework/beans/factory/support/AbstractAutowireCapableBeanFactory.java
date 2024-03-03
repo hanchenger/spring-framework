@@ -556,6 +556,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			//推断supplier，实例工厂方法等等，推断构造方法，实例化对象
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
+		//bean == 代理对象
 		Object bean = instanceWrapper.getWrappedInstance();
 		Class<?> beanType = instanceWrapper.getWrappedClass();
 		if (beanType != NullBean.class) {

@@ -6,35 +6,38 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ConfigurationClassEnhancer;
+import org.springframework.example.enhancer.bean.X;
+import org.springframework.example.enhancer.bean.Y;
 
 import java.io.File;
 
 @Configuration
 @ComponentScan("com.test.enhancer.bean")
 @Slf4j(topic = "e")
-public class AppconfigProxy  {
+public class AppconfigProxy extends Appconfig implements ConfigurationClassEnhancer.EnhancedConfiguration {
 	//cglib在生成这个代理类的时候动态添加的一个属性
 	BeanFactory $$beanFactory;
 
-//	@Bean
-//	public X x(){
-//		//BeanMethodInterceptor.intercept
-//		return null;
-//	}
-//
-//
-//
-//	@Bean
-//	public Y y(){
-//		//BeanMethodInterceptor.intercept
-//		return y();
-//	}
-//
-//
-//	// 什么时候调用？----？
-//	@Override
-//	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-//		//BeanFactoryAwareMethodInterceptor.intercept(this)
-//	}
+	@Bean
+	public X x(){
+		//BeanMethodInterceptor.intercept
+		return null;
+	}
+
+
+
+	@Bean
+	public Y y(){
+		//BeanMethodInterceptor.intercept
+		return y();
+	}
+
+
+	// 什么时候调用？----？
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		//BeanFactoryAwareMethodInterceptor.intercept(this)
+	}
 
 }

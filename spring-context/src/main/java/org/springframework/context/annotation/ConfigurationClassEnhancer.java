@@ -68,7 +68,7 @@ import org.springframework.util.ReflectionUtils;
  * @see #enhance
  * @see ConfigurationClassPostProcessor
  */
-class ConfigurationClassEnhancer {
+public class ConfigurationClassEnhancer {
 
 	// The callbacks to use. Note that these callbacks must be stateless.
 	private static final Callback[] CALLBACKS = new Callback[] {

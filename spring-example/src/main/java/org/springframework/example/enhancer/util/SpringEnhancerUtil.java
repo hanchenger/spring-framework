@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.core.SpringNamingPolicy;
 import org.springframework.cglib.proxy.*;
-import org.springframework.example.enhancer.bean.A;
 import org.springframework.example.enhancer.bean.Z;
 
 import java.lang.reflect.Field;
@@ -58,7 +57,6 @@ public class SpringEnhancerUtil {
 		Z z = (Z) springEnhancerUtil.createProxyClazz(Z.class);
 		z.m0();
 		z.m1();
-
 
 	}
 
