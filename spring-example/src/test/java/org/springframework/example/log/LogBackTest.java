@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@Slf4j
+@Slf4j(topic="e")
 public class LogBackTest {
 
 	//private Logger log = LoggerFactory.getLogger(LogBackTest.class);

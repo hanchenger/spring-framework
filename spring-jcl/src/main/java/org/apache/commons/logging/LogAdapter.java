@@ -39,6 +39,7 @@ final class LogAdapter {
 	// log4j2 jar 当中的一个类
 	private static final String LOG4J_SPI = "org.apache.logging.log4j.spi.ExtendedLogger";
 
+	// log4j-to-slf4j jar包当中的一个类
 	private static final String LOG4J_SLF4J_PROVIDER = "org.apache.logging.slf4j.SLF4JProvider";
 
 	private static final String SLF4J_SPI = "org.slf4j.spi.LocationAwareLogger";
