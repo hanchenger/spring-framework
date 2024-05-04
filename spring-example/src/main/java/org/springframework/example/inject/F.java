@@ -15,14 +15,16 @@ public class F {
 	 *           先type >1 再名称 =1 true >1 f
 	 *           先type =0 看request如为true则报错
 	 *
-	 *
+	 * Resource 先name 1  t
+	 *          先name >1 再类型 =1 true >1 f
+	 *          先name =0 
 	 *
 	 */
-	//Autowired
+	//@Autowired
 	@Resource
-	I c;
+	I a;
 
-	@Resource(name = "cc")
+	@Resource
 	G g;
 
 	@Autowired
@@ -35,7 +37,7 @@ public class F {
 	}
 
 	public I getI() {
-		return c;
+		return a;
 	}
 
 	public void setA(I a) {

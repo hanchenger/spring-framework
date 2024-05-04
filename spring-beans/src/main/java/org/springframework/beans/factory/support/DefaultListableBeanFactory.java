@@ -1266,7 +1266,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 
 			//resolveMultipleBeans方法就是解析当前依赖项是否支持多个bean注入，比如list
-			//如果是能支持多个注入则在该方法内部完成了bean的查找，否认下面完成查找
+			//如果是能支持多个注入则在该方法内部完成了bean的查找，否则下面完成查找
 			Object multipleBeans = resolveMultipleBeans(descriptor, beanName, autowiredBeanNames, typeConverter);
 			if (multipleBeans != null) {
 				return multipleBeans;
@@ -1391,7 +1391,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (elementType == null) {
 				return null;
 			}
-			//
+			//findAutowireCandidates 根据类型查找
 			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, elementType,
 					new MultiElementDescriptor(descriptor));
 			if (matchingBeans.isEmpty()) {
@@ -1488,6 +1488,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	protected Map<String, Object> findAutowireCandidates(
 			@Nullable String beanName, Class<?> requiredType, DependencyDescriptor descriptor) {
 
+		//通过类型找出来有多少符合条件的bean的名字数组
 		String[] candidateNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
 				this, requiredType, true, descriptor.isEager());
 		Map<String, Object> result = new LinkedHashMap<>(candidateNames.length);
@@ -1529,6 +1530,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 			}
 		}
+		//这里的map的value，object不是要注入类型的实例，而是要注入类型的class对象
+		//这是因为spring还没有确认找出这几个类，哪个是最终要注入的，也有可能spring找出的所有的类都不符合你要注入的类，所以现在只是先返回class类对象，不走spring的生命周期，提高效率
 		return result;
 	}
 
