@@ -43,23 +43,24 @@ public class BatisTest {
 	@Test
 	public void onlyBatis(){
 
-//		BatisConfig config = new BatisConfig();
-//
-//		DataSource dataSource = config.dataSource();
-//
-//		TransactionFactory transactionFactory = new JdbcTransactionFactory();
-//		Environment environment = new Environment("development",transactionFactory,dataSource);
-//		Configuration configuration = new Configuration(environment);
-//		configuration.addMapper(TMapper.class);
-//
-//		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//
-//		TMapper mapper = sqlSession.getMapper(TMapper.class);
-//
-//		Map<String, Object> resultMap = mapper.queryFroMap(1);
-//
-//		log.debug("resultMap:{}",resultMap);
+		BatisConfig config = new BatisConfig();
+
+		DataSource dataSource = config.dataSource();
+
+		TransactionFactory transactionFactory = new JdbcTransactionFactory();
+		Environment environment = new Environment("development",transactionFactory,dataSource);
+		Configuration configuration = new Configuration(environment);
+		configuration.addMapper(TMapper.class);
+
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		//如何获取这个Tmapper对象的
+		TMapper mapper = sqlSession.getMapper(TMapper.class);
+
+		Map<String, Object> resultMap = mapper.queryFroMap(1);
+
+		log.debug("resultMap:{}",resultMap);
 
 
 	}

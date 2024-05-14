@@ -161,7 +161,6 @@ public class ModeTest {
         for(E e : beanFactoryPostProcessor){
 			e.orderList();
 		}
-
 	}
 
 

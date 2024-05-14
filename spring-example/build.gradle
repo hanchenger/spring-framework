@@ -22,6 +22,7 @@ dependencies {
 //    compile("org.apache.logging.log4j:log4j-api")
 
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    testImplementation 'org.projectlombok:lombok:1.18.12'
 
 // https://mvnrepository.com/artifact/log4j/log4j
 //    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
@@ -35,6 +36,7 @@ dependencies {
     //mybatis和spring的插件包
     // implementation group: 'org.mybatis', name: 'mybatis-spring', version: '1.2.5'
     implementation group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.5'
+
     //junit
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/junit/junit

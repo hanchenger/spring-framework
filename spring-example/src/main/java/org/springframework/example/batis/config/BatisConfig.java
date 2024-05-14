@@ -16,16 +16,17 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @ComponentScan("org.springframework.example.batis")
-//@MapperScan(value = "org.springframework.example.batis.dao")
-@ImportResource("classpath:spring-batis.xml")
+@MapperScan(value = "org.springframework.example.batis.dao")
+//@ImportResource("classpath:spring-batis.xml")
 //@Import(MyImportBeanDefinitionRegistrar.class)
-@MyMapperScan("org.springframework.example.batis.dao")
+//@MyMapperScan("org.springframework.example.batis.dao")
 public class BatisConfig {
 
 
 	@Bean
 	public DataSource dataSource() {
 
+		//sing自带的数据源
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 		driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		driverManagerDataSource.setPassword("root");
