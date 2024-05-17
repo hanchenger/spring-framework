@@ -87,7 +87,7 @@ public class BatisTest {
 	 *    这种方式不行,原因
 	 * 2.xml配置<bean></bean>  不行
 	 * 3.注解（@Bean） 可以
-	 * 4.Factory 可以
+	 * 4.FactoryBean 可以
 	 * 5.springAPi可以
 	 * 6.动态的向容器注册BeanDefinition 不行
 	 */
