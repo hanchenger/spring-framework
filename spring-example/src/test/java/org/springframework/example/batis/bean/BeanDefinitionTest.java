@@ -23,6 +23,15 @@ public class BeanDefinitionTest {
 
 	}
 
+
+	@Test
+	public void testImportBeanDefinitionRegistrar() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.batis.util");
+		context.refresh();
+
+	}
+
 	@Test
 	public void testRegisterBeanDefinitions() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BatisConfig.class);

@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.example.batis.bean.F;
 import org.springframework.example.context.bean.A;
 import org.springframework.example.context.bean.C;
@@ -14,6 +16,14 @@ import org.springframework.example.context.config.ContextConfig;
 
 
 public class ContextTest {
+
+	@Test
+	public void xmlBeanFactoryScanContext(){
+		ClassPathResource classPathResource = new ClassPathResource("spring-context.xml");
+		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(classPathResource);
+		A bean = xmlBeanFactory.getBean(A.class);
+		bean.getC();
+	}
 
 
 	@Test
