@@ -529,7 +529,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Allows post-processing of the bean factory in context subclasses.
 				postProcessBeanFactory(beanFactory);
 
-				//完成了扫描的工作
+				/**
+				 * 完成了扫描的工作
+				 * 所有不等于真实的所有
+				 * 所有：可靠？
+				 */
 				// Invoke factory processors registered as beans in the context.
 				invokeBeanFactoryPostProcessors(beanFactory);
 
@@ -595,7 +599,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				logger.trace("Refreshing " + this);
 			}
 			else {
-				logger.debug("Refreshing " + getDisplayName());
+				logger.debug("Refreshing aaa " + getDisplayName());
 			}
 		}
 

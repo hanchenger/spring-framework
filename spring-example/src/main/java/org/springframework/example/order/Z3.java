@@ -15,8 +15,8 @@ public class Z3 {
 		log.debug("order-{}",this.getClass().getAnnotation(Order.class).value());
 	}
 
-	@PostConstruct
-	public void initMethod() {
-		log.debug("annotation init bean 3");
-	}
+//	@PostConstruct
+//	public void initMethod() {
+//		log.debug("annotation init bean 3");
+//	}
 }

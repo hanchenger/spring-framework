@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.beans.Introspector;
 
-@Component("nn")
+//@Component("nn")
 public class N {
 
 

@@ -36,7 +36,7 @@ public class ContextTest {
 		beanFactory.registerBeanDefinition("a",beanDefinitionBuilder.getBeanDefinition());
 		//beanDefinitionBuilder.getBeanDefinition().setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
-		 beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(C.class);
+		beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(C.class);
 		beanFactory.registerBeanDefinition("c",beanDefinitionBuilder.getBeanDefinition());
 
 		AutowiredAnnotationBeanPostProcessor postProcessor = new AutowiredAnnotationBeanPostProcessor();

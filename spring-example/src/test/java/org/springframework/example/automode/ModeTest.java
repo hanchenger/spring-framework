@@ -26,27 +26,6 @@ public class ModeTest {
 
 
 	@Test
-	public void dependsOnModel() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.scan("org.springframework.example.dependsOn");
-		context.refresh();
-	}
-
-	@Test
-	public void staticsModel() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		//context.register(Config.class);
-
-		//beanDefinition称为bean的原料
-		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-		beanDefinition.setBeanClass(A.class);
-
-		context.registerBeanDefinition("a", beanDefinition);
-
-		context.refresh();
-	}
-
-	@Test
 	public void staticsDefinitionModel2() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(ObjectFactory.class);
@@ -117,7 +96,7 @@ public class ModeTest {
 	public void defaultModel() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(ModelConfig.class);
-        context.register(ModelBeanFactoryPostProcessor.class);
+       // context.register(ModelBeanFactoryPostProcessor.class);
 		context.refresh();
 
 	}
@@ -176,5 +155,26 @@ public class ModeTest {
 		//context.getBean(LA.class).printInfo();
 
 		context.getBean(LC.class).printInfo();
+	}
+
+	@Test
+	public void dependsOnModel() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("org.springframework.example.dependsOn");
+		context.refresh();
+	}
+
+	@Test
+	public void staticsModel() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		//context.register(Config.class);
+
+		//beanDefinition称为bean的原料
+		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
+		beanDefinition.setBeanClass(A.class);
+
+		context.registerBeanDefinition("a", beanDefinition);
+
+		context.refresh();
 	}
 }

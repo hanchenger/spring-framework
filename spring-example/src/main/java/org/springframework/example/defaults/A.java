@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-@Component("aa")
+//@Component("aa")
 //@Slf4j
 public class A implements ExampleAware {
 
@@ -22,15 +22,15 @@ public class A implements ExampleAware {
 	}
 
 	//spring推断构造方法会采用参数最多的构造方法
-	public A(B b,M m) {
-		log.info("Constructor from b m");
-	}
+//	public A(B b,M m) {
+//		log.info("Constructor from b m");
+//	}
 
 	//spring推断构造方法会采用参数最多的构造方法,
 	//虽然这个构造方法参数最多的，但是验证之后，推断构造方法采用的是A(B b,M m)，这是因为String s这个参数不在spring的容器内
-	public A(B b,M m,String s) {
-		log.info("Constructor from b m s");
-	}
+//	public A(B b,M m,String s) {
+//		log.info("Constructor from b m s");
+//	}
 
 
 
@@ -40,8 +40,8 @@ public class A implements ExampleAware {
 		log.info("Constructor from c");
 	}
 
-	public A(M m){
-		log.info("Constructor from m");
-	}
+//	public A(M m){
+//		log.info("Constructor from m");
+//	}
 
 }

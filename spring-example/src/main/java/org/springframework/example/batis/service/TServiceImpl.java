@@ -16,8 +16,8 @@ public class TServiceImpl implements TService {
 	//2、tMapper如何产生的？谁产生的
 	@Autowired
 	TMapper tMapper;
-	@Autowired
-	AMapper aMapper;
+//	@Autowired
+//	AMapper aMapper;
 
 	@Override
 	public List<Map<String, Object>> queryFroList() {

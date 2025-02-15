@@ -8,7 +8,7 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProce
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 @Slf4j(topic = "e")
 public class J implements BeanDefinitionRegistryPostProcessor {
 

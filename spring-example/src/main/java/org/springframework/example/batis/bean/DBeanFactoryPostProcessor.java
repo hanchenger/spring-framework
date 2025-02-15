@@ -20,8 +20,8 @@ public class DBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 				AbstractBeanDefinition f = (AbstractBeanDefinition) beanFactory.getBeanDefinition("f");
 		f.setAutowireMode(2);
 
-		//beanFactory.ignoreDependencyType(K.class);
-
+//		beanFactory.ignoreDependencyType(K.class);
+//
 		beanFactory.ignoreDependencyInterface(IAware.class);
 	}
 }
