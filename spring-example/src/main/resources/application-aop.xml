@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<bean id="studentService" class="org.springframework.example.aopp.service.impl.StudentServiceImpl">
+	</bean>
+
+	<bean id="xmlAdvice" class="org.springframework.example.aopp.aspect.XmlAdvice"></bean>
+
+<!--	<tx:annotation-driven></tx:annotation-driven>-->
+	<!-- 事务通知 见官网core/5.5/5.5.6 -->
+<!--	<tx:advice id="tx-advice" transaction-manager="transactionManager">-->
+<!--		<tx:attributes>-->
+<!--			<tx:method name="update" propagation="REQUIRED"/>-->
+<!--		</tx:attributes>-->
+<!--	</tx:advice>-->
+
+	<!--执行顺序 before after-returning after -->
+
+	<aop:config>
+		<aop:pointcut id="businessService" expression="execution(* org.springframework.example.aopp.service.*.*(..))"/>
+<!--		<aop:advisor-->
+<!--				pointcut-ref="businessService"-->
+<!--				advice-ref="tx-advice"/>-->
+		<aop:aspect ref="xmlAdvice">
+			<aop:after-returning method="afterReturning" pointcut-ref="businessService"></aop:after-returning>
+			<aop:after method="after" pointcut-ref="businessService"/>
+			<aop:before method="before" pointcut-ref="businessService"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>

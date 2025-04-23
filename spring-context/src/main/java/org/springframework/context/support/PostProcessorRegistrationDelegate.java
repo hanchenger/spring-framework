@@ -223,13 +223,25 @@ final class PostProcessorRegistrationDelegate {
 
 	public static void registerBeanPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {
-
+        //从beanDefinitionMAp当中获取所有的beanPostProcessor 3个，分别是AutowiredAnnotationBeanPostProcessor，CommonAnnotationBeanPostProcessor，如果启用@EnableAspectJAutoProxy代理则有AnnotationAwareAspectJAutoProxyCreator
 		String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanPostProcessor.class, true, false);
 
 		// Register BeanPostProcessorChecker that logs an info message when
 		// a bean is created during BeanPostProcessor instantiation, i.e. when
 		// a bean is not eligible for getting processed by all BeanPostProcessors.
+		// beanProcessorTargetCount spring期望一个bean应该执行几个beanPostProcessor的数量
+		// beanFactory.getBeanPostProcessorCount()==3+1+3
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
+		//作用：检查一个bean即将执行的beanPostProcessor的个数和预期的是否相同
+		//它自己也算一个beanPostProcessor
+		//为什么需要检查
+		//预期值？spring找出来的beanPostProcessor仅仅是spring认为
+		//将来有一天会放到这个list当中的bean做后置处理
+		//spring将来也一定会放进去，现在还没有放进去
+		//假设在没有放进去之前就有了某些bean前去实例化走生命周期，那么就出现这个bean实际执行的beanPostProcessor与期望执行的beanPostProcessor的个数不一致，就报警告
+
+		//哪些情况会出现预期和实际不符
+		//1.在beanPostProcessor没有添加完预期的所有beanPostProcessor之前，有bean要走生命周期
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
 
 		// Separate between BeanPostProcessors that implement PriorityOrdered,

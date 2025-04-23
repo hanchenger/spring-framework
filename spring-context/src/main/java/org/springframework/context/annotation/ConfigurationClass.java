@@ -55,13 +55,17 @@ final class ConfigurationClass {
 	@Nullable
 	private String beanName;
 
+	//这个配置类是被谁（复数正常情况一般只有一个）import进来的
 	private final Set<ConfigurationClass> importedBy = new LinkedHashSet<>(1);
 
+	//当前配置类当中所有的@Bean method
 	private final Set<BeanMethod> beanMethods = new LinkedHashSet<>();
 
+	//xml
 	private final Map<String, Class<? extends BeanDefinitionReader>> importedResources =
 			new LinkedHashMap<>();
 
+	//当前配置类上面所有Import的类的类型为ImportBeanDefinitionRegistrar的对象
 	private final Map<ImportBeanDefinitionRegistrar, AnnotationMetadata> importBeanDefinitionRegistrars =
 			new LinkedHashMap<>();
 

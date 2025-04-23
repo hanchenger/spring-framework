@@ -247,9 +247,11 @@ class ConfigurationClassParser {
 		}
 
 		// Recursively process the configuration class and its superclass hierarchy.
+		//SourceClass 当前类的基础信息 ConfigurationClass 当前类的配置信息
 		SourceClass sourceClass = asSourceClass(configClass, filter);
 		do {
 			//开始解析配置类
+			//do-while 为了循环的处理当前配置的父类
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass, filter);
 		}
 		while (sourceClass != null);
@@ -264,6 +266,10 @@ class ConfigurationClassParser {
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
 	 * @return the superclass, or {@code null} if none found or previously processed
+	 *
+	 * 开始解析配置类
+	 * 1、判断是否加了@Componet注解
+	 * 1.1、 如果加了 -- 解析是否有内部类
 	 */
 	@Nullable
 	protected final SourceClass doProcessConfigurationClass(
@@ -311,6 +317,7 @@ class ConfigurationClassParser {
 			}
 		}
 
+		//getImports(sourceClass)获取当前配置类上面所有的Import注解的值
 		// Process any @Import annotations
 		processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
 
@@ -356,6 +363,7 @@ class ConfigurationClassParser {
 	private void processMemberClasses(ConfigurationClass configClass, SourceClass sourceClass,
 			Predicate<String> filter) throws IOException {
 
+		//sourceClass 类的基础信息 -- 1个 memberApp
 		Collection<SourceClass> memberClasses = sourceClass.getMemberClasses();
 		if (!memberClasses.isEmpty()) {
 			List<SourceClass> candidates = new ArrayList<>(memberClasses.size());
