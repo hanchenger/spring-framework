@@ -71,3 +71,7 @@ dependencies {
 	testRuntimeOnly("com.sun.xml.bind:jaxb-impl")
 	testRuntimeOnly("com.sun.activation:javax.activation")
 }
+
+jar{
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

@@ -91,3 +91,7 @@ dependencies {
 		because("needed by Netty's SelfSignedCertificate on JDK 15+")
 	}
 }
+
+jar{
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

@@ -36,3 +36,8 @@ tasks.named('compileKotlin') {
 	// Kotlin also depends on the result of Groovy compilation
 	classpath += files(sourceSets.main.groovy.classesDirectory)
 }
+
+jar {
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

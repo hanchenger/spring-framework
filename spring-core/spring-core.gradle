@@ -89,6 +89,7 @@ jar {
 	from(zipTree(objenesisRepackJar.archivePath)) {
 		include "org/springframework/objenesis/**"
 	}
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 test {
