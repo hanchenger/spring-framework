@@ -227,6 +227,9 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 				}
 				throw ex;
 			}
+			// 通过HttpMessageConverter来判断要返回结果Response类型
+			// 遍历Spring容器中所有的HttpMessageConverter，通过canWrite（）方法来进行判断，如果支持返回值的类型，那就添加
+			// 比如如果返回的是String，对应的是StringHttpMessageConverter ，那么MediaType 为 text/plain、 */*
 			List<MediaType> producibleTypes = getProducibleMediaTypes(request, valueType, targetType);
 
 			if (body != null && producibleTypes.isEmpty()) {
@@ -278,6 +281,7 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 				if (genericConverter != null ?
 						((GenericHttpMessageConverter) converter).canWrite(targetType, valueType, selectedMediaType) :
 						converter.canWrite(valueType, selectedMediaType)) {
+					// 在写入请求体之前
 					body = getAdvice().beforeBodyWrite(body, returnType, selectedMediaType,
 							(Class<? extends HttpMessageConverter<?>>) converter.getClass(),
 							inputMessage, outputMessage);

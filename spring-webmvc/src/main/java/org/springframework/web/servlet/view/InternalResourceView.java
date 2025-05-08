@@ -148,6 +148,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 		String dispatcherPath = prepareForRendering(request, response);
 
 		// Obtain a RequestDispatcher for the target resource (typically a JSP).
+		// RequestDispatcher 用来在服务端进行转发的
 		RequestDispatcher rd = getRequestDispatcher(request, dispatcherPath);
 		if (rd == null) {
 			throw new ServletException("Could not get RequestDispatcher for [" + getUrl() +
@@ -168,6 +169,14 @@ public class InternalResourceView extends AbstractUrlBasedView {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Forwarding to [" + getUrl() + "]");
 			}
+			//http://localhost:8080/tuling-web这个是根路径
+			// <!--	<servlet-mapping>-->
+			//<!--		<servlet-name>app</servlet-name>-->
+			//<!--		<url-pattern>/app/*</url-pattern>-->
+			//<!--	</servlet-mapping>-->
+			//只有访问http://localhost:8080/tuling-web/app/这个路径才会去访问servlet，而http://localhost:8080/tuling-web/WEB-INF/index.jsp这个路径是不会访问servlet的的，它去访问页面了
+			// tomcat如果是访问WEB-INF目录下，直接在浏览器地址访问：http://localhost:8080/tuling-web/WEB-INF/index.jsp是访问不到的，但是这个	rd.forward(request, response);可以访问到，应该是tomcat的限制
+			// tomcat是可以访问webapp目录下的页面资源的,
 			rd.forward(request, response);
 		}
 	}

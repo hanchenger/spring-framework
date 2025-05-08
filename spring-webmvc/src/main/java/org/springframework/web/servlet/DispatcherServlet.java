@@ -944,6 +944,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		request.setAttribute(THEME_RESOLVER_ATTRIBUTE, this.themeResolver);
 		request.setAttribute(THEME_SOURCE_ATTRIBUTE, getThemeSource());
 
+		// 重定向
 		if (this.flashMapManager != null) {
 			FlashMap inputFlashMap = this.flashMapManager.retrieveAndUpdate(request, response);
 			if (inputFlashMap != null) {
@@ -1040,8 +1041,10 @@ public class DispatcherServlet extends FrameworkServlet {
 				multipartRequestParsed = (processedRequest != request);
 
 				// Determine handler for the current request.
+				// 根据请求path找到对应的HandlerExecutionChain  （包含了HandlerMethod和 HandlerInterceptor）
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
+					// 报404
 					noHandlerFound(processedRequest, response);
 					return;
 				}
@@ -1058,7 +1061,7 @@ public class DispatcherServlet extends FrameworkServlet {
 						return;
 					}
 				}
-
+                // 调用HandlerInterceptor的applyPreHandle(processedRequest,response) 方法 ，如果返回false ，那么调用流程结束
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
@@ -1069,8 +1072,9 @@ public class DispatcherServlet extends FrameworkServlet {
 				if (asyncManager.isConcurrentHandlingStarted()) {
 					return;
 				}
-
+                // 设置默认视图
 				applyDefaultViewName(processedRequest, mv);
+				//调用HandlerInterceptor 的 postHandle方法
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
 			catch (Exception ex) {
@@ -1081,6 +1085,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// making them available for @ExceptionHandler methods and other scenarios.
 				dispatchException = new NestedServletException("Handler dispatch failed", err);
 			}
+			// 先渲染视图，然后调用 HandlerInterceptor 的 triggerAfterCompletion方法
 			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 		}
 		catch (Exception ex) {
@@ -1142,6 +1147,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 		// Did the handler return a view to render?
 		if (mv != null && !mv.wasCleared()) {
+			//渲染视图
 			render(mv, request, response);
 			if (errorView) {
 				WebUtils.clearErrorRequestAttributes(request);
@@ -1397,6 +1403,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			if (mv.getStatus() != null) {
 				response.setStatus(mv.getStatus().value());
 			}
+			//找到具体的view（jsp页面或者freeMark页面或thymeleaf页面）之后渲染html，写到response里面就可以了
 			view.render(mv.getModelInternal(), request, response);
 		}
 		catch (Exception ex) {

@@ -114,6 +114,8 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
 			Object... providedArgs) throws Exception {
 
+		// 执行方法 并得到方法返回值 ，就是我们方法中的返回值，没有额外处理，所以后面是要处理的
+		// 但是这个方法中涉及到参数绑定，比如要判断方法需要哪些参数，分别该传什么值，也是比较复杂的
 		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
 		setResponseStatus(webRequest);
 
